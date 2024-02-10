@@ -1,64 +1,29 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap");
 
 *,
 *::after,
 *::before {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    user-select: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
+  min-height: 100vh;
 }
 
 /************************ navbar styling **************************/
 .navbar {
-    height: 4rem;
-    background-color: purple;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  height: 4rem;
+  background-color: purple;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .navbar h1 {
-    color: #fff;
-    font-size: 2rem;
-}
-
-/************************ main container styling **************************/
-.main_container {
-    border: 2px solid #000;
-    display: flex;
-    justify-content: center;
-}
-
-/************************ left container styling **************************/
-.left_container {
-    border: 2px solid #000;
-}
-
-.inputs {
-    display: flex;
-    flex-direction: column;
-}
-
-.inputs label {
-    font-size: 2rem;
-}
-
-#generate_bill_btn {
-    width: 100%;
-    font-size: 2rem;
-    border: none;
-    background-color: purple;
-    color: #fff;
-    padding: 1rem;
-    cursor: pointer;
-}
-
-/************************ right container styling **************************/
-.right_container {
-    border: 2px solid #000;
+  color: #fff;
+  font-size: 2rem;
 }

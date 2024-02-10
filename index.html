@@ -12,68 +12,6 @@
       <h1>tallytracker</h1>
     </nav>
 
-    <!-------------------- main container ----------------------->
-    <div class="main_container">
-      <!-------------------- left container ------------------------->
-      <div class="left_container">
-        <!-- bill amount input -->
-        <div class="inputs">
-          <label for="bill_amount">Bill Amount</label>
-          <div class="bill_amount_rupee_symbol_div">
-            <span>₹</span>
-            <input type="number" id="bill_amount" required />
-          </div>
-        </div>
-
-        <!-- default tip buttons -->
-        <div class="default_tip_btns_inputs">
-          <button class="default_tip_value">5%</button>
-          <button class="default_tip_value">10%</button>
-          <button class="default_tip_value">15%</button>
-          <button class="default_tip_value">20%</button>
-          <button class="default_tip_value">25%</button>
-          <button class="default_tip_value">30%</button>
-        </div>
-
-        <!-- custom tip input -->
-        <div class="inputs">
-          <label for="custom_tip">Custom Tip</label>
-          <input type="number" id="custom_tip" />
-        </div>
-
-        <!-- No. of People -->
-        <div class="inputs">
-          <label for="people">Number Of People</label>
-          <input type="number" id="people" required />
-        </div>
-
-        <!-- generate bill button -->
-        <button id="generate_bill_btn">Generate Bill</button>
-      </div>
-      <!-------------------- right container ------------------------->
-      <div class="right_container">
-        <!-- generate bill button -->
-        <div class="outputs">
-          <span class="output_text">Tip Amount</span>
-          <span id="tip_amount">100.00</span>
-        </div>
-
-        <!-- generate bill button -->
-        <div class="outputs">
-          <span class="output_text">Total Bill</span>
-          <span id="total_bill">1100.00</span>
-        </div>
-
-        <!-- generate bill button -->
-        <div class="outputs">
-          <span class="output_text">Per Head Bill</span>
-          <span id="per_head_bill_value">275.00</span>
-        </div>
-
-        <!-- reset bill button -->
-        <button id="reset_bill_btn">Reset Bill</button>
-      </div>
-    </div>
     <script src="index.js"></script>
   </body>
 </html>
