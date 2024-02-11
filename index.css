@@ -21,9 +21,127 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 3rem;
 }
 
 .navbar h1 {
   color: #fff;
-  font-size: 2rem;
+  font-size: 3rem;
+}
+
+/************************ main container styling **************************/
+.main_container_div {
+  max-width: 900px;
+  margin: 1rem auto;
+  display: flex;
+  gap: 1rem;
+}
+
+/************************ input container styling **************************/
+
+.input_container_div {
+  flex-basis: 50%;
+}
+
+.bill_amount_rupee_input_div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rupee_symbol {
+  font-size: 1.75rem;
+  margin-right: 0.15rem;
+}
+
+.inputs_div {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.inputs_div input {
+  border: none;
+  outline: none;
+  background-color:rgba(128, 0, 128,0.6);
+  color: #000;
+  width: 100%;
+  border-radius: 0.25rem;
+  padding: 1rem;
+  font-size: 1.75rem;
+}
+
+.inputs_div label {
+  font-size: 1.75rem;
+  margin-bottom: 0.25rem;
+}
+
+/* it will hide the
+up & down arrows inside
+the input element */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+.default_btn_label {
+  font-size: 1.75rem;
+  margin-bottom: 0.25rem;
+}
+
+.default_tip_buttons_div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.default_tip_btn {
+  font-size: 1.25rem;
+  padding: 0.75rem;
+}
+
+#generate_bill_btn {
+  width: 100%;
+  padding: 1rem;
+  background-color: purple;
+  color: #fff;
+  border: none;
+  outline: none;
+  border-radius: 0.25rem;
+  font-size: 1.5rem;
+}
+
+
+/************************ output container styling **************************/
+.output_container_div {
+  flex-basis: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  background-color: purple;
+  color: #fff;
+  padding: 1rem;
+  border-radius: 0.25rem;
+}
+
+.outputs_div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.outputs_div > span {
+  font-size: 1.75rem;
+}
+
+#reset_bill_btn {
+  width: 100%;
+  padding: 1rem;
+  background-color: #fff;
+  color: #000;
+  border: none;
+  outline: none;
+  border-radius: 0.25rem;
+  font-size: 1.5rem;
 }

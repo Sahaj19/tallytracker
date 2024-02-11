@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>tallytracker</title>
     <link rel="stylesheet" href="index.css" />
+    <script src="index.js" defer></script>
   </head>
   <body>
     <!----------------------- navbar ---------------------------->
@@ -12,6 +13,71 @@
       <h1>tallytracker</h1>
     </nav>
 
-    <script src="index.js"></script>
+    <!----------------------- main container ---------------------------->
+    <div class="main_container_div">
+      <!----------------------- input container ---------------------------->
+      <div class="input_container_div">
+        <!----------------------- bill amount input ---------------------------->
+        <div class="inputs_div">
+          <label for="bill_amount">Bill amount</label>
+          <div class="bill_amount_rupee_input_div">
+            <span class="rupee_symbol">₹</span>
+            <input type="number" id="bill_amount" autofocus />
+          </div>
+        </div>
+
+        <!----------------------- default tip buttons ---------------------------->
+        <div class="inputs_div">
+          <p class="default_btn_label">Select Tip</p>
+          <div class="default_tip_buttons_div">
+            <button class="default_tip_btn">5%</button>
+            <button class="default_tip_btn" disabled>10%</button>
+            <button class="default_tip_btn" disabled>15%</button>
+            <button class="default_tip_btn" disabled>20%</button>
+            <button class="default_tip_btn" disabled>25%</button>
+            <button class="default_tip_btn" disabled>30%</button>
+          </div>
+        </div>
+
+        <!----------------------- custom tip input ---------------------------->
+        <div class="inputs_div">
+          <label for="custom_tip">Custom tip</label>
+          <input type="number" />
+        </div>
+
+        <!----------------------- number of people input ---------------------------->
+        <div class="inputs_div">
+          <label for="people_count">Number of people</label>
+          <input type="number" />
+        </div>
+
+        <!----------------------- generate bill button ---------------------------->
+        <button id="generate_bill_btn">Generate bill</button>
+      </div>
+
+      <!----------------------- output container ---------------------------->
+      <div class="output_container_div">
+        <!----------------------- number of people input ---------------------------->
+        <div class="outputs_div">
+          <span class="output_text">Tip Amount</span>
+          <span id="tip_amount">5%</span>
+        </div>
+
+        <!----------------------- number of people input ---------------------------->
+        <div class="outputs_div">
+          <span class="output_text">Total Bill</span>
+          <span id="final_bill_amount">100.00</span>
+        </div>
+
+        <!----------------------- number of people input ---------------------------->
+        <div class="outputs_div">
+          <span class="output_text">Per Head Bill</span>
+          <span id="per_head_bill_amount">20.00</span>
+        </div>
+
+        <!----------------------- reset bill btn  ---------------------------->
+        <button id="reset_bill_btn">Reset bill</button>
+      </div>
+    </div>
   </body>
 </html>
