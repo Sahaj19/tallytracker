@@ -2,4 +2,4 @@
 
 > Simplify bill splitting among groups with this efficient expense-sharing tool.
 
-deployed here : 
+deployed here : https://tallytracker.netlify.app
