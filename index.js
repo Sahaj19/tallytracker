@@ -13,6 +13,7 @@ const final_bill_amount_output = document.querySelector("#final_bill_amount");
 const per_head_bill_amount_output = document.querySelector(
   "#per_head_bill_amount"
 );
+const reset_tip_btn = document.querySelector("#reset_bill_btn");
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //(global values)
@@ -24,29 +25,25 @@ let peopleCount = 0;
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 function btnState() {
   let billAmount = parseFloat(bill_amount_input.value);
-  if (billAmount > 0) {
-    billMoney = billAmount;
-    custom_tip_input.disabled = false;
-
-    default_tip_btns.forEach((btn) => {
-      btn.classList.add("active_input_btn");
-      btn.disabled = false;
-      btn.style.cursor = "pointer";
-    });
-  } else if (billAmount == "") {
+  if (isNaN(billAmount) || billAmount <= 0) {
+    // Disable buttons
     default_tip_btns.forEach((btn) => {
       btn.classList.remove("active_input_btn");
       btn.classList.remove("default_btns_box_shadow");
       btn.disabled = true;
       btn.style.cursor = "not-allowed";
     });
-  } else if (billAmount !== "") {
+  } else {
+    // Enable buttons
     default_tip_btns.forEach((btn) => {
-      btn.classList.remove("active_input_btn");
-      btn.disabled = true;
-      btn.style.cursor = "not-allowed";
+      btn.classList.add("active_input_btn");
+      btn.disabled = false;
+      custom_tip_input.disabled = false;
+      btn.style.cursor = "pointer";
     });
   }
+
+  billMoney = billAmount;
 }
 
 bill_amount_input.addEventListener("input", btnState);
@@ -61,32 +58,35 @@ default_tip_btns.forEach((btn) => {
     btn.classList.add("default_btns_box_shadow");
 
     buttonTip = Number(btn.textContent.slice(0, -1));
-    people_count.disabled = false;
-    people_count.focus();
+    custom_tip_input.value = ""; // Reset custom tip input
+    customTip = 0; // Reset customTip
+    people_count_input.disabled = false;
+    // people_count_input.focus();
   });
 });
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //(managing custom tip)
-
-//is function ka purpose hai
-//ek time par ek tip
-//ya toh default tip me se koi select karlo
-//ya phir apni custom tip enter kardo
 function customTipFn() {
   let custom_Tip = parseFloat(custom_tip_input.value);
-  if (custom_Tip > 0) {
+  if (isNaN(custom_Tip) || custom_Tip <= 0 || custom_Tip == "") {
+    // Disable buttons
+    default_tip_btns.forEach((btn) => {
+      btn.classList.add("active_input_btn");
+      btn.disabled = false;
+      btn.style.cursor = "pointer";
+    });
+    buttonTip = 0;
+  } else {
+    // Enable buttons
     default_tip_btns.forEach((btn) => {
       btn.classList.remove("active_input_btn");
       btn.classList.remove("default_btns_box_shadow");
       btn.disabled = true;
-      customTip = custom_Tip;
+      btn.style.cursor = "not-allowed";
+      people_count_input.disabled = false;
     });
-  } else {
-    default_tip_btns.forEach((btn) => {
-      btn.disabled = false;
-      btn.classList.add("active_input_btn");
-    });
+    buttonTip = custom_Tip;
   }
 }
 
@@ -97,7 +97,7 @@ custom_tip_input.addEventListener("input", customTipFn);
 function peopleCountFn() {
   let people_count = parseInt(people_count_input.value);
   if (people_count > 0) {
-    peopleCount = people_count;
+    people_count_input.value = people_count;
     generate_bill_btn.classList.add("active_input_btn");
     generate_bill_btn.disabled = false;
     generate_bill_btn.style.cursor = "pointer";
@@ -106,6 +106,8 @@ function peopleCountFn() {
     generate_bill_btn.disabled = true;
     generate_bill_btn.style.cursor = "not-allowed";
   }
+
+  peopleCount = people_count;
 }
 
 people_count_input.addEventListener("input", peopleCountFn);
@@ -113,10 +115,39 @@ people_count_input.addEventListener("input", peopleCountFn);
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //(bill generating function)
 generate_bill_btn.addEventListener("click", () => {
-  console.log(billMoney);
-  console.log(buttonTip);
-  console.log(customTip);
-  console.log(peopleCount);
+  let tipAmount = (billMoney * (buttonTip || customTip)) / 100;
+  let totalBill = billMoney + tipAmount;
+  let perHeadBill = totalBill / peopleCount;
+
+  tip_amount_output.innerHTML = "₹ " + tipAmount.toFixed(2, 0);
+  final_bill_amount_output.innerHTML = "₹ " + totalBill.toFixed(2, 0);
+  per_head_bill_amount_output.innerHTML = "₹ " + perHeadBill.toFixed(2, 0);
+
+  reset_tip_btn.disabled = false;
+  reset_tip_btn.style.cursor = "pointer";
 });
 
-//check custom tip input and output functionality
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//(reset bill button functionality)
+reset_tip_btn.addEventListener("click", () => {
+  //reset inputs
+  bill_amount_input.value = "";
+  default_tip_btns.forEach((btn) => {
+    btn.classList.remove("active_input_btn");
+    btn.classList.remove("default_btns_box_shadow");
+    btn.disabled = true;
+    btn.style.cursor = "not-allowed";
+  });
+  people_count_input.value = "";
+  custom_tip_input.value = "";
+  generate_bill_btn.disabled = true;
+  generate_bill_btn.style.cursor = "not-allowed";
+  generate_bill_btn.classList.remove("active_input_btn");
+
+  //reset outputs
+  tip_amount_output.innerHTML = "";
+  final_bill_amount_output.innerHTML = "";
+  per_head_bill_amount_output.innerHTML = "";
+  reset_tip_btn.disabled = true;
+  reset_tip_btn.style.cursor = "not-allowed";
+});
